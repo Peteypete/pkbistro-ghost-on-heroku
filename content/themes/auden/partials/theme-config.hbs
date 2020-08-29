@@ -4,10 +4,10 @@
   // ===============
   let config = {
     /* Replace it with your domain: ghost_host: 'https://yoursite.domain' */
-    ghost_url: 'http://localhost:3368', 
-    
-    /* Settings > Integrations > New Custom Integration. Copy Key. Replace ghost_key below. */
-    ghost_key: '55a4116f266aa7f13f51a90d72', 
+    ghost_url: 'https://pkbistro.herokuapp.com',
+
+    /* Settings > Integrations > New Custom Integration. Copy "Content API Key". Replace ghost_key below. */
+    ghost_key: '3d47273454c07a1ee7ea6f0d1a',
 
     /* Default Color Scheme. Values: preference(detects user setting), light, dark. */
     color_scheme_default: 'preference',
@@ -22,13 +22,13 @@
     enable_scroll_top: true,
 
     /* Replace 'biron-demo' with your disqus account shortname */
-    disqus_shortname: 'biron-demo'  
+    disqus_shortname: 'biron-demo'
   }
 
   // =========================
   // Dark/Light Theme Handling
   // =========================
-  let preferredTheme; 
+  let preferredTheme;
   if (config.color_scheme_default === 'preference') {
     const preferredColorScheme = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
     preferredTheme = localStorage.getItem('USER_COLOR_SCHEME') || preferredColorScheme;
@@ -36,7 +36,7 @@
     preferredTheme = localStorage.getItem('USER_COLOR_SCHEME') || config.color_scheme_default;
   }
   document.documentElement.setAttribute("data-color-scheme", preferredTheme);
-  
+
   // ===============================
   // Global values used in the theme
   // ===============================
@@ -44,7 +44,7 @@
     pagination_current_page: parseInt(`{{pagination.page}}`),
     pagination_next_page: parseInt(`{{pagination.next}}`),
     pagination_next_page_link: '',
-    pagination_max_pages: parseInt('{{pagination.pages}}'), 
+    pagination_max_pages: parseInt('{{pagination.pages}}'),
     pagination_posts_per_page: parseInt('{{@config.posts_per_page}}'),
   }
 </script>
