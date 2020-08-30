@@ -185,3 +185,13 @@ deployment process provided by _this repository_, then [open an issue here](http
 ## License
 
 Released under the [MIT license](./LICENSE), just like the Ghost project itself.
+
+## Load Themes
+
+https://blog.many-monkeys.com/hosting-ghost-for-free/
+
+## Themes Purchased
+
+https://themeforest.net/item/paperleaf-multipurpose-ghost-theme/14206224
+
+https://bironthemes.com/docs/auden-ghost/#integrations
