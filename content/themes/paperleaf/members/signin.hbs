@@ -1,0 +1,44 @@
+{{!< ../default}}
+
+<main class="content">
+
+    <article class="{{post_class}} p3 sm-p4 mx-auto bg-white box-shadow">
+
+        <div class="post-content">
+
+            {{#if @member}}
+
+                {{!-- Logged in: Redirect home --}}
+                <script>window.location = '{{@site.url}}';</script>
+
+            {{else}}
+
+                {{!-- Not logged in: Signin form --}}
+                <div class="subscribe p3 bg-yellow-light clearfix">
+                    <h1 class="post-title mt0">{{t "Welcome back!" }}</h1>
+                    <p class="mt1 mb2 lg-mb3 gray">{{t "Sign into your account again for full access" }}</p>
+                    <form class="signin-form" data-members-form="signin">
+                        <div class="form-group">
+                            <input class="subscribe-email" data-members-email type="email" placeholder="{{t "Your email address"}}" required="true" autocomplete="false" />
+                        </div>
+                        <button class="button relative" type="submit">
+                            <span class="button-content">{{t "Send login link" }}</span>
+                            <span class="button-loader">{{> "loader"}}</span>
+                        </button>
+                        <div class="col-12 mt2 h5 left">{{t "Don't have an account yet?" }} <a  href="/signup/">{{t "Sign up" }}</a></div>
+                        <div class="message-success">
+                            <strong>{{t "Great!"}}</strong> {{t "Check your inbox and click the link to complete signin."}}
+                        </div>
+                        <div class="message-error">
+                            {{t "Please enter a valid email address!" }}
+                        </div>
+                    </form>
+                </div>
+
+            {{/if}}
+
+        </div>
+
+    </article>
+
+</main>

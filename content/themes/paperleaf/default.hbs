@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="{{@site.lang}}">
+<head>
+    {{! Document Settings }}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{! Page Meta }}
+    <title>{{meta_title}}</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="{{asset "favicon.ico"}}">
+
+    {{! Styles'n'Scripts }}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/dist/main.min.css"}}" />
+    {{!-- <link rel="stylesheet" type="text/css" href="{{asset "css/dist/custom.css"}}" /> --}}
+
+    {{! Ghost outputs important style and meta data with this tag }}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}} bg-yellow-light">
+
+    <div class="loader js-loader fixed z4 bg-white">
+        <div class="loader-status"></div>
+    </div>
+
+    {{> sidebar}}
+
+    <div class="content-area p3 lg-p4">
+
+        {{! Everything else gets inserted here }}
+        {{{body}}}
+
+    </div>
+
+    <footer class="p3 center h6 clearfix gray border-box lg-hide">
+        {{> footer}}
+    </footer>
+
+    {{#if @labs.members}}
+        {{> "notifications"}}
+    {{/if}}
+
+    {{!-- jQuery needs to come before `{{ghost_foot}}` so that jQuery can be used in code injection --}}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    {{! The main JavaScript file for Paperleaf }}
+    <script src="{{asset "js/dist/all.min.js"}}"></script>
+    {{!-- <script src="{{asset "js/dist/custom.js"}}"></script> --}}
+
+    {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
+    {{{block "scripts"}}}
+
+    {{! Ghost outputs important scripts and data with this tag }}
+    {{ghost_foot}}
+
+</body>
+</html>

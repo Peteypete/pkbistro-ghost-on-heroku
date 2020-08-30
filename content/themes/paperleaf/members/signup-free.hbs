@@ -1,0 +1,25 @@
+{{!< ../default}}
+
+<main class="content">
+
+    <article class="{{post_class}} p3 sm-p4 mx-auto bg-white box-shadow">
+
+        <div class="post-content">
+
+            {{#if @member}}
+
+                {{!-- Logged in, not paying: Redirect home --}}
+                <script>window.location = '{{@site.url}}';</script>
+
+            {{else}}
+
+                {{!-- Not logged in: Sign up --}}
+                {{> member-signup}}
+
+            {{/if}}
+
+        </div>
+
+    </article>
+
+</main>
