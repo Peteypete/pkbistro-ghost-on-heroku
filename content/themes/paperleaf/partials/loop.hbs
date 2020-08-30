@@ -1,0 +1,20 @@
+{{! This is the post loop - each post will be output using this markup }}
+{{#foreach posts visibility="all"}}
+<article class="{{post_class}} post-access-{{visibility}} px2 border-box post--grid {{#if featured}}post--featured{{/if}}">
+    <a class="post-link" href="{{url}}" aria-label="{{title}}">
+        <div class="p3 bg-white box-shadow">
+            {{#if feature_image}}
+            <div class="post-image mxn3 mb3">
+                <img src="{{img_url feature_image size="m"}}" srcset="{{img_url feature_image size="s"}} 264w, {{img_url feature_image size="m"}} 584w, {{img_url feature_image size="l"}} 720w, {{img_url feature_image size="xl"}} 1440w" sizes="(min-width: 640px) 50vw, (min-width: 1024px) 80vw, (min-width: 1152px) 33vw, (min-width: 1920px) 30vw, 100vw" alt="{{title}}">
+            </div>
+            {{/if}}
+            <header class="post-header">
+                <h2 class="post-title mt0 break-word black">{{{title}}}</h2>
+            </header>
+            <div class="post-excerpt gray h5">
+                <p class="mb0">{{excerpt}}</p>
+            </div>
+        </div>
+    </a>
+</article>
+{{/foreach}}

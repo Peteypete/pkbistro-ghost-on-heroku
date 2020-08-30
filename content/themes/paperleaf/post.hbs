@@ -1,0 +1,120 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! Everything inside the #post tags pulls data from the post }}
+{{#post}}
+
+<main class="content">
+    <article class="{{post_class}} p3 sm-p4 mb4 mx-auto bg-white box-shadow">
+
+        <header class="post-header center">
+            <h1 class="post-title mt0">{{title}}</h1>
+            <div class="post-meta mb3 h5 gray">
+                {{#primary_author}}
+                <span class="inline-block px1">
+                    <a href="{{url}}">
+                    {{#if profile_image}}
+                      <img class="circle align-middle border" width="24" src="{{img_url profile_image}}" alt="{{name}}">
+                    {{/if}}
+                    {{name}}
+                    </a>
+                </span>
+                {{/primary_author}}
+                <span class="inline-block px1"><time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="Do MMM YYYY"}}</time> {{tags prefix=(t " on ")}}</span>
+                <span class="inline-block px1">{{reading_time minute=(t "1 min read") minutes=(t "% min read")}}</span>
+            </div>
+        </header>
+
+        <div class="post-content mb3 sm-mb4">
+            {{#if access}}
+                {{content}}
+            {{else}}
+                <p>{{t "You don't have access to this post on"}} <strong>{{@site.title}}</strong> {{t "at the moment, but if you upgrade your account you'll be able to see the whole thing, as well as all the other posts in the archive! Subscribing only takes a few seconds and will give you immediate access."}}</p>
+                <aside class="post-upgrade-cta bg-yellow-light p3 center rounded">
+                    {{#if @member}}
+                        <h3 class="h2 mt0">{{t "This post is for paying subscribers only"}}</h3>
+                    {{else}}
+                        <h3 class="h2 mt0">{{t "This post is for subscribers only"}}</h3>
+                    {{/if}}
+                    <div class="white">
+                        <a class="btn btn-primary" href="/signup/">{{t "Subscribe now"}}</a>
+                    </div>
+                    <div class="col-12 mt2 h5">{{t "Already have an account?" }} <a href="/signin/">{{t "Sign in" }}</a></div>
+                </aside>
+            {{/if}}
+        </div>
+
+        <footer class="post-footer">
+
+            <div class="share center">
+                <h4 class="h5 caps mt0">{{t "Share this post"}}</h4>
+                <a class="inline-block hop5 px1" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <img class="align-middle" src="{{asset 'images/facebook-square.svg'}}" alt="Facebook icon">
+                    <span class="hide">Facebook</span>
+                </a>
+                <a class="inline-block hop5 px1" href="https://twitter.com/intent/tweet?text={{encode title}}&amp;url={{url absolute="true"}}"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=310');return false;">
+                    <img class="align-middle" src="{{asset 'images/twitter.svg'}}" alt="Twitter icon">
+                    <span class="hide">Twitter</span>
+                </a>
+                <a class="inline-block hop5 px1" href="https://www.linkedin.com/shareArticle?mini=true&title={{encode title}}&url={{url absolute="true"}}"
+                    onclick="window.open(this.href, 'linkedin-share', 'width=550,height=580');return false;">
+                    <img class="align-middle" src="{{asset 'images/linkedin.svg'}}" alt="LinkedIn icon">
+                    <span class="hide">LinkedIn</span>
+                </a>
+                <a class="inline-block hop5 px1" href="mailto:?subject={{encode title}}&body={{encode title}}%20-%20{{url absolute="true"}}">
+                    <img class="align-middle" src="{{asset 'images/mail.svg'}}" alt="Mail icon">
+                    <span class="hide">E-Mail</span>
+                </a>
+            </div>
+
+            {{#if @labs.members}}
+                {{#unless @member}}
+                    <div class="subscribe p3 mt3 sm-mt4 bg-yellow-light clearfix">
+                        <h3 class="h2 mt0">{{t "Subscribe to {blogtitle}" blogtitle=@site.title}}</h3>
+                        <p class="gray">{{t "Get the latest posts delivered right to your inbox."}}</p>
+                        <form data-members-form="subscribe">
+                            <div class="form-group">
+                                <input class="subscribe-email" data-members-email type="email" placeholder="{{t "Your email address"}}" required="true" autocomplete="false" />
+                            </div>
+                            <button class="button relative" type="submit">
+                                <span class="button-content">{{t "Subscribe" }}</span>
+                                <span class="button-loader">{{> "loader"}}</span>
+                            </button>
+                            <div class="col-12 mt2 h5 left">{{t "Already have an account?" }} <a href="/signin/">{{t "Sign in" }}</a></div>
+                            <div class="message-success"><strong>{{t "Great!"}}</strong> {{t "Check your inbox and click the link to confirm your subscription."}}</div>
+                            <div class="message-error">{{t "Please enter a valid email address!" }}</div>
+                        </form>
+                    </div>
+                {{/unless}}
+            {{/if}}
+
+        </footer>
+
+    </article>
+
+    <div class="read-next mx-auto clearfix">
+        {{#next_post}}
+        <div class="sm-col-6 right mb3 sm-mb0 read-next-story right-align">
+            <a class="block px4" href="{{url}}">
+                <h2 class="h4 mb1">{{title}}</h2>
+                <p class="h6 mb0">{{excerpt words="19"}}&hellip;</p>
+            </a>
+        </div>
+        {{/next_post}}
+        {{#prev_post}}
+        <div class="sm-col-6 left read-next-story prev">
+            <a class="block px4" href="{{url}}">
+                <h2 class="h4 mb1">{{title}}</h2>
+                <p class="h6 mb0">{{excerpt words="19"}}&hellip;</p>
+            </a>
+        </div>
+        {{/prev_post}}
+    </div>
+
+</main>
+
+{{/post}}

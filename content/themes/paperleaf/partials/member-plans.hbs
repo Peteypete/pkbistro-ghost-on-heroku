@@ -1,0 +1,42 @@
+<div class="checkout-form">
+    <h1 class="post-title mt0 center">{{t "Choose your subscription" }}</h1>
+    <p class="h5 lg-h4 mt1 mb2 lg-mb3 center">{{t "Unlock full access to {blogtitle} and see the entire library of members-only content & updates" blogtitle=@site.title}}</p>
+    <div class="checkout-box flex flex-wrap justify-center">
+        <div class="checkout-plan">
+            <header class="checkout-plan-header mb2">
+                <h2 class="h3 lg-h2 mt0 mb2 teal">{{t "Monthly" }}</h2>
+                <strong class="h3 lg-h2">{{@price.currency_symbol}}{{@price.monthly}}</strong> / {{t "month" }}
+            </header>
+            <div class="checkout-plan-content">
+                <ul class="h5 list-reset">
+                    <li>{{t "Full access to all private posts"}}</li>
+                    <li>{{t "Regular updates with new content"}}</li>
+                    <li>{{t "Support independent publishing"}}</li>
+                    <li>{{t "Simple, secure card payment"}}</li>
+                    <li>{{t "Try before you commit long term"}}</li>
+                </ul>
+                <div class="white">
+                    <a class="btn btn-primary bg-teal block center" href="javascript:" data-members-plan="Monthly">{{t "Choose this plan" }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-plan">
+            <header class="checkout-plan-header mb2">
+                <h2 class="h3 lg-h2 mt0 mb2 blue">{{t "Yearly" }}</h2>
+                <strong class="h3 lg-h2">{{@price.currency_symbol}}{{@price.yearly}}</strong> / {{t "year" }}
+            </header>
+            <div class="checkout-plan-content">
+                <ul class="h5 list-reset">
+                    <li>{{t "Full access to all private posts"}}</li>
+                    <li>{{t "Regular updates with new content"}}</li>
+                    <li>{{t "Support independent publishing"}}</li>
+                    <li>{{t "Simple, secure card payment"}}</li>
+                    <li>{{t "One easy payment instead of 12!"}}</li>
+                </ul>
+                <div class="white">
+                    <a class="btn btn-primary bg-blue block center" href="javascript:" data-members-plan="Yearly">{{t "Choose this plan" }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<a class="toggle-nav hop5 lg-hide js-toggle-nav" href="#" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</a>
+<div class="nav mt2 lg-mt0 js-nav">
+    <ul class="list-reset mb3 border-top">
+        {{#foreach navigation}}
+            <li class="nav-{{slug}}{{#if current}} nav-current{{/if}} border-bottom" role="presentation"><a class="py1 block caps black" href="{{url absolute="true"}}">{{label}}</a></li>
+        {{/foreach}}
+    </ul>
+    <div class="sidebar-search mb3">
+        <form role="search" method="get" class="search-form" action="#">
+            <label>
+                <span class="screen-reader-text">{{t "Search for:"}}</span>
+                <input type="search" class="search-field" placeholder="{{t "Search …"}}" value="" name="s" title="{{t "Search for:"}}">
+            </label>
+            <input type="submit" class="search-submit" value="Search">
+          </form>
+    </div>
+    <a class="inline-block hop5 pl1" href="{{@site.url}}/rss/" title="{{t "Subscribe to RSS feed"}}"><span class="hide">{{t "Subscribe"}}</span><img class="align-middle" src="{{asset 'images/feed.svg'}}" alt="{{t "Feed icon"}}"></a>
+    {{#if @site.facebook}}
+        <a class="inline-block hop5 pl1" href="{{facebook_url @site.facebook}}" title="{{t "Facebook page"}}"><span class="hide">{{t "Facebook page"}}</span><img class="align-middle" src="{{asset 'images/facebook-square.svg'}}" alt="{{t "Facebook icon"}}"></a>
+    {{/if}}
+    {{#if @site.twitter}}
+        <a class="inline-block hop5 pl1" href="{{twitter_url @site.twitter}}" title="{{t "Twitter page"}}"><span class="hide">{{t "Twitter page"}}</span><img class="align-middle" src="{{asset 'images/twitter.svg'}}" alt="{{t "Twitter icon"}}"></a>
+    {{/if}}
+    {{#if @labs.members}}
+        <div class="mt2 h5">
+            {{#if @member}}
+                <span class="gray">{{t "Signed in as"}}</span><br>{{ @member.email }}
+                <ul class="user-menu list-reset mt1 mb0">
+                    {{! Hack to check if paid memberships are enabled }}
+                    {{#if @price.monthly}}
+                        {{#unless @member.paid}}
+                            <li><a class="mb1 inline-block bold" href="/signup/">{{t "Subscribe now"}}</a></li>
+                        {{/unless}}
+                        <li><a class="mb1 inline-block" href="/account/">{{t "Your Account"}}</a></li>
+                    {{/if}}
+                    <li><a class="mb1 inline-block" href="#" role="link" data-members-signout>{{t "Sign out?"}}</a></li>
+                </ul>
+            {{else}}
+                <ul class="user-menu list-reset mt1 mb0">
+                    <li><a class="mb1 inline-block bold" href="/signup/">{{t "Sign up"}}</a></li>
+                    <li><a class="mb1 inline-block" href="/signin/">{{t "Sign in"}}</a></li>
+                </ul>
+            {{/if}}
+        </div>
+    {{/if}}
+</div>
